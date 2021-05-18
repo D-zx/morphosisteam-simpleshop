@@ -4,7 +4,7 @@ default: &default
   timeout: 5000
   username: <%= ENV.fetch('DATABASE_USERNAME') { 'postgres' } %>
   password: <%= ENV.fetch('DATABASE_PASSWORD') { 'password' } %>
-  host: <%= ENV.fetch('DATABASE_HOST') { 'localhost' } %>
+  host: <%= ENV.fetch('DATABASE_HOST') { 'db' } %>
   port: <%= ENV.fetch('DATABASE_PORT') { 5432 } %>
 
 development:
@@ -14,7 +14,7 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
   database: application-database-dev
-test:
+test: &test
   <<: *default
   database: application-database-test
 
@@ -25,3 +25,11 @@ staging:
 production:
   <<: *default
   database: application-database-prod
+
+cucumber:
+  <<: *test
+cucumber:
+  <<: *test
+
+cucumber:
+  <<: *test
